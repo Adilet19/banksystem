@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface BankAccount {
+    accountNumber: string;
+    balance: number;
+    currency: string;
 }
+
+const BankAccountInfo: React.FC<{ account: BankAccount }> = ({ account }) => {
+    return (
+        <div>
+            <h2>Информация о банковском счете</h2>
+            <p>Номер счета: {account.accountNumber}</p>
+            <p>Баланс: {account.balance} {account.currency}</p>
+        </div>
+    );
+};
+
+const App: React.FC = () => {
+    const userAccount: BankAccount = {
+        accountNumber: '7777',
+        balance: 1000,
+        currency: 'USD'
+    };
+
+    return (
+        <div>
+            <h1>Добро пожаловать в ваш банк</h1>
+            <BankAccountInfo account={userAccount} />
+        </div>
+    );
+};
 
 export default App;
